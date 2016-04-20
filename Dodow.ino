@@ -1,27 +1,28 @@
 /*
-   6 respirations par minutes
-   4 scondes d'apiration
-   6 secondes d'expiration
+Breathing sleep LED, like a DODOW.
+
+LED is attached with a resistor
 */
-
-int ledPin = 9;           // the PWM pin the LED is attached to
-
-void setup() {
+int i = 0;
+int ledPin = 9;               // the PWM pin the LED is attached to
+void setup() {                // wake up the led
+  for(i = 0 ; i <= 15; i+=1)
+  {
+    analogWrite(ledpin, i);
+    delay(5);
+  }
 }
 
-// the loop routine runs over and over again forever:
-void loop() {
-  // fade in from min to max in increments of 5 points:
-  for (int fadeValue = 0 ; fadeValue <= 255; fadeValue += (255/4000)) {
-    // sets the value (range from 0 to 255):
-    analogWrite(ledPin, fadeValue);
-    delay(1);
+void loop()
+{
+  for(i = 15 ; i <= 255; i+=1)
+  { 
+    analogWrite(ledpin, i);
+    delay(17);                //4080 ms ~4s
   }
-
-  // fade out from max to min in increments of 5 points:
-  for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= (255/6000)) {
-    // sets the value (range from 0 to 255):
-    analogWrite(ledPin, fadeValue);
-    delay(1);
+  for(i = 255; i >=15; i-=1)
+  {
+    analogWrite(11, i);
+    delay(25);                //6000ms ~6s
   }
 }
